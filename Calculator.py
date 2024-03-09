@@ -28,12 +28,24 @@ def rent_hike_date(start_date,end_dates):
         start_date = start_date+relativedelta(years=1)
     return hike_dates
 
+def calculate_first_month_rent(start_date,end_dates,rent,rate):
+    last_day = get_last_day(start_date.month,start_date.year)
+    month_rent = total_rent_for_month(rent,last_day,start_date)
+    return month_rent,last_day
 
 def calculate_rent(start_date,end_dates,rent,rate):
     current_date = start_date
     #previous_date = start_date
     month_rent_list = []
     rent_list = []
+    rent_list.append(rent)
+    first_month_rent,f_last_day = calculate_first_month_rent(start_date,end_dates,rent,rate)
+    month_rent_list.append(first_month_rent)
+    print(f"Due Date: {start_date}")
+    print(f"Rent: {rent}")
+    print(f"Last Day of Month: {f_last_day}")
+    print(f"Month End Rent: {first_month_rent}")
+
     while current_date < end_dates:
         current_date = current_date+ relativedelta(months=1)
         hike_dates = rent_hike_date(start_date, end_dates)
