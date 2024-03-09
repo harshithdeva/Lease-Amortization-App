@@ -35,7 +35,6 @@ def calculate_first_month_rent(start_date,end_dates,rent,rate):
 
 def calculate_rent(start_date,end_dates,rent,rate):
     current_date = start_date
-    #previous_date = start_date
     month_rent_list = []
     rent_list = []
     rent_list.append(rent)
@@ -56,15 +55,14 @@ def calculate_rent(start_date,end_dates,rent,rate):
         last_day = get_last_day(current_date.month,current_date.year)
         month_rent = total_rent_for_month(rent,last_day,start_date)
         month_rent_list.append(month_rent)
-        #split_rent = split_rent_calculator(month_rent_list,rent_list)
-        #total_rent = split_rent + month_rent
-        #previous_date = current_date+ relativedelta(months=1)
+        split_rent = split_rent_calculator(month_rent_list,rent_list)
+        total_rent = split_rent + month_rent
         print(f"Due Date: {current_date}")
         print(f"Rent: {rent}")
         print(f"Last Day of Month: {last_day}")
         print(f"Month End Rent: {month_rent}")
-        #print(f"Due Day Rent : {split_rent}")
-        #print(f"Total Rent: {total_rent}")
+        print(f"Due Day Rent : {split_rent}")
+        print(f"Total Rent: {total_rent}")
               
 
 
