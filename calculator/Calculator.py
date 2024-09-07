@@ -1,9 +1,6 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import calendar
-import csv
-import os
-from local_config import PATH
 
 
 def split_rent_calculator(month_rent_list, rent_list):
