@@ -79,38 +79,4 @@ def calculate_rent(start_date, end_dates, rent, rate):
         "Due Day Rent",
         "Total Rent",
     ]
-    csv_writer(header_list=header_list, data_list=data_list)
-
-
-def csv_writer(header_list, data_list):
-
-    time = datetime.now()
-    time = time.strftime("%d-%m-%Y")
-    filename = f"data_{time}.csv"
-    file_path = os.path.join(PATH, filename)
-    with open(file_path, "w") as csvfile:
-        # creating a csv writer object
-        csvwriter = csv.writer(csvfile)
-        # writing the fields
-        csvwriter.writerow(header_list)
-        # writing the data rows
-        csvwriter.writerows(data_list)
-
-
-def main():
-    start_date = input("What is the start date?\n")
-    end_date = input("What is the end date?\n")
-    rent_pm = input("What is the rent amount\n")
-    rent_pm = int(rent_pm)
-    rate_increase = input("What is the Rate hike %\n")
-    rate_increase = int(rate_increase)
-    try:
-        start_date = datetime.strptime(start_date, "%d-%m-%Y")
-        end_date = datetime.strptime(end_date, "%d-%m-%Y")
-    except:
-        print("Date Entered in the Incorrect Format")
-
-    calculate_rent(start_date, end_date, rent_pm, rate_increase)
-
-
-main()
+    return header_list, data_list

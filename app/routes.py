@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request, redirect, flash, url_for
+from flask import Flask, render_template, request, redirect, flash, url_for, send_file
 from app import app
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import tempfile
+from calculator.Calculator import calculate_rent
+import csv
 
 
 @app.route("/")
@@ -32,9 +35,21 @@ def submit():
     else:
         flash("Success")
         return redirect(url_for("index"))
-    print(rent_pm)
-    print(rate_increase)
-    print(start_date)
-    print(end_date)
+    headers, data = calculate_rent(
+        start_date=start_date, end_dates=end_date, rent=rent_pm, rate=rate_increase
+    )
+
+    time = datetime.now()
+    time = time.strftime("%d-%m-%Y")
+    filename = f"data_{time}.csv"
+    with tempfile.NamedTemporaryFile(mode="w", newline="", delete=False) as temp_file:
+        csvwriter = csv.writer(temp_file)
+        # writing the heades rows
+        csvwriter.writerow(headers)
+        # writing the data rows
+        csvwriter.writerows(data)
+        temp_file_path = temp_file.name
+
     flash("Success")
-    return redirect(url_for("index"))
+    # return redirect(url_for("index"))
+    return send_file(temp_file_path, as_attachment=True, download_name=filename)
