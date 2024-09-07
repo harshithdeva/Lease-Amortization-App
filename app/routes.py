@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 
 @app.route("/")
-@app.route("/index", methods=["POST"])
+@app.route("/index", methods=["GET", "POST"])
 def index():
     return render_template("input_page.html")
 
