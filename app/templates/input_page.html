@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rent Schedule Calculator</title>
+</head>
+<body>
+    <h2>Rent Schedule Calculator</h2>
+    <form id="calendarForm" action="/submit" method="POST">
+        <label for="date">What is the start date?</label><br>
+        <input type="date" id="start_date" name="start_date"><br>
+        <label for="date">What is the end date?</label><br>
+        <input type="date" id="end_date" name="end_date"><br>
+        <label for="event">What is the Rent Amount ?</label><br>
+        <input type="number" id="rent_pm" name="rent_pm"><br>
+        <label for="event">What is the Rent Hike %</label><br>
+        <input type="number" id="rate_increase" name="rate_increase"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
